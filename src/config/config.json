@@ -1,0 +1,94 @@
+{
+	"Data" : {
+		"clientID" : "1058094559718027264",
+		"guildID" : "1051917810764353647",
+		"token" : "MTA1ODA5NDU1OTcxODAyNzI2NA.GvTx8M.1sPBKjFiFeNIG72Li2dvLNDSAY-B3nOUdHdyvE",
+		"prefix" : "/",
+		"urlmongodb" : "mongodb+srv://Volpistan_BOT:2rOPLOoRyFjnk3sg@volpistan.selyvih.mongodb.net/Data"
+	},
+
+	"Canali" : {
+		"Errore" : "1058365934823276596",
+		"Welcome" : "1057807703843549204",
+		"Leave" : "1058446994290516031",
+		"Regolamento" : "1057807561140744253",
+		"Annunci" : "1058093173286645880",
+		"LastChance" : "1058088615567175711",
+		"Banca" : "1060152603067035678",
+		"XP" : "1058164311421354054",
+			"Logs" : {
+				"Kick" : "1058396810571436083",
+				"ban" : "1058398857358221462",
+				"Message" : "1058497469908008960",
+				"JoinAndLeave" : "1058710539913658389",
+				"channel" : "1058722459035127908",
+				"voice" : "1058727136946569297",
+				"role" : "1058763547926077520",
+				"member" : "1059103862834868305",
+				"guild" : "1059110961283350569",
+				"MessageCreate" : "1059143365771411596"
+		}
+	},
+
+	"Ruoli" : {
+		"BlackZone" : "1057803038405963896",
+		"LastChance" : "1057803041803350076",
+		"Creator" : "1057797412393070682",
+		"Founder" : "1057803033574113300",
+		"XP" : {
+			"Prestigio" : "1058793427346669589",
+			"ParlatoreProfessionista" : "1058164674039914556",
+			"ChiaccheronePRO" : "1058164667459063848",
+			"Speaker" : "1058164647745826927",
+			"Chiaccherone" : "1058164647276056666",
+			"Giovanechiaccherone" : "1058164638983929967",
+			"Novellino" : "1058164636672856255"
+		},
+		"ReactionRole" : {
+			"Verificato" : "1057792409360146495",
+			"AnimeWorld" : "1058085443117260900",
+			"Male" : "1058164668281139200",
+			"Female" : "1058164680339771492",
+			"Other" : "1058164684894773288"
+
+		}
+		
+	},
+
+	"Embed" : {
+		"ColoreDefault" : "Orange",
+		"ColoreLog" : "#daa520",
+		"ColoreT" : "#6495ed"
+	},
+	"ReactionRole" : {
+		"Regolamento" : {
+			"MessageID" : "1057823458626633739",
+			"Reaction" : "✅"
+		},
+		"RolesCH" : {
+			"AnimeWorld" : {
+				"MessageID" : "1058086990639288350",
+				"Reaction" : "🎋"
+			},
+			"Male" : {
+				"MessageID" : "1058168918436499487",
+				"Reaction" : "🔵"
+			},
+			"Female" : {
+				"MessageID" : "1058168918436499487",
+				"Reaction" : "🟣"
+			},
+			"Other" : {
+				"MessageID" : "1058168918436499487",
+				"Reaction" : "🏳️‍🌈"
+			}
+		} 
+	},
+
+	"Webhook" : {
+		"Announce" :  {
+			"ID" : "1059233595711033364",
+			"Token" : "Yt4I3xKe0w86oKd6c_DUX5YNIf_Bow6UlGVnTsV8V3baELTfewIJu4rSNNj99RXm7-AA"
+		}
+	}
+}
