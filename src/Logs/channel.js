@@ -20,7 +20,7 @@ module.exports = (client) => {
                 name: "**Tipologia:**", value: `${channel.type.toString()}`, inline: false
             },
             {
-                name: "**Categoria:**", value: `${channel.parent.name}`, inline: false
+                name: "**Categoria:**", value: `${channel.parent}`, inline: false
             },
             {
                 name: "**Nome e ID:**", value: `${channel.name} || ${channel.id}`, inline: false
@@ -44,7 +44,7 @@ module.exports = (client) => {
                 name: "**Tipologia:**", value: `${channel.type.toString()}`, inline: false
             },
             {
-                name: "**Categoria:**", value: `${channel.parent.name}`, inline: false
+                name: "**Categoria:**", value: `${channel.parent}`, inline: false
             },
             {
                 name: "**Nome e ID:**", value: `${channel.name} || ${channel.id}`, inline: false

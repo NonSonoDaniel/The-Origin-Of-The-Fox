@@ -82,7 +82,7 @@ module.exports = {
                 .setTimestamp()
 
                 if(!utenteDB) return interaction.reply({ embeds: [userPresente], ephemeral: true });
-                
+                    await utente.roles.remove(Ruoli.BlackZone)
                     for(let roles of utenteDB.roles) {
                         await interaction.guild.members.cache.get(utenteDB.userID).roles.add(roles)
                     }

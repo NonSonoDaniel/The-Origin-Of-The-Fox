@@ -66,7 +66,7 @@ module.exports = {
 
         async function Collect() {
 
-            const Amount = Math.ceil(Math.random() * 5000)
+            const Amount = Math.ceil(Math.random() * 2000)
 
             DB.VolpiCoin += Amount;
             await DB.save()

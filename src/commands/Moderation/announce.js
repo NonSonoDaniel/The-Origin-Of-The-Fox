@@ -24,7 +24,7 @@ module.exports = {
         
         WebhookSend.send({
             content: messaggio,
-            username: "Volpistan",
+            username: "The Origin of the Fox",
             avatarURL: client.user.displayAvatarURL()
         })
 

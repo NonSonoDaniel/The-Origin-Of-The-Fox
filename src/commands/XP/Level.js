@@ -50,7 +50,7 @@ module.exports = {
     .setAvatar(member.displayAvatarURL({ forceStatic: true }))
     .setBackground(
         "IMAGE",
-        "https://cdn.discordapp.com/attachments/1059476843171942480/1059958542108459128/canvas-preview.png"
+        "https://cdn.discordapp.com/attachments/1074301679048069280/1074301707858747412/9529287067_415c1c17b9_b_2.png"
         )
         .setCurrentXP(Data.XP)
         .setRequiredXP(Required)

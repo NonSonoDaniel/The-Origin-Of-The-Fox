@@ -1,6 +1,6 @@
 console.clear()
 //---------------------------------
-const { IntentsBitField, Client, Partials, Collection, ActivityType, Routes, REST, GatewayIntentBits } = require('discord.js');
+const { IntentsBitField, Client, Partials, Collection, ActivityType, Routes, REST } = require('discord.js');
 const { readdirSync } = require("node:fs");
 const mongoose = require("mongoose")
 //---------------------------------
@@ -15,10 +15,10 @@ const client = new Client({ intents: Object.values(IntentsBitField.Flags),
 
 client.once("ready", () => {
     client.user.setStatus("idle");
-    client.user.setActivity(`Volpistan`, { type: ActivityType.Watching });
+    client.user.setActivity(`The Origin of the Fox`, { type: ActivityType.Watching });
     console.log(`[BOT] Mi sono avviato correttamente in "${client.user.username}" ✅`)
 });
-
+mongoose.set('strictQuery', false);
 mongoose.connect(Data.urlmongodb)
 .then(() => console.log(`[DATABASE] Connessione al database eseguita con successo! ✅`))
 .catch((err) => console.error(err));

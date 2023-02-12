@@ -11,7 +11,7 @@ module.exports = (client) => {
         const guild = client.guilds.cache.get(Data.guildID);
         const whCh = guild.channels.cache.get(Canali.Logs.JoinAndLeave);
         const Join = new EmbedBuilder()
-        .setTitle("<:Pikachu:1057810243553337354> **JOIN** <:Pikachu:1057810243553337354>")
+        .setTitle("<:PikachuPixelate:1074107894003404831> **JOIN** <:PikachuPixelate:1074107894003404831>")
         .setColor("Green")
         .setDescription(`L'utente <@${member.id}> è entrato nel server!`)
         .addFields(

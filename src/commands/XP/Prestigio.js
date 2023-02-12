@@ -38,7 +38,7 @@ module.exports = {
       .setTimestamp();
 
     if (!dataLDB || dataLDB.Livello != 100)
-      return interaction.reply({ embeds: [no100], ephemeral: true });
+      return interaction.reply({ embeds: [no100], ephemeral: false });
 
     await interaction.deferReply();
 
@@ -52,7 +52,7 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Prestigio effettuato!\n Ti sono stati accreditati 2000 VolpiCoin e un ruolo speciale come ricompensa!`
+        `<@${interaction.user.id}> Prestigio effettuato!\n Ti sono stati accreditati 10000 VolpiCoin e un ruolo speciale come ricompensa!`
       )
       .setColor(Embed.ColoreT)
       .setTimestamp();
@@ -66,7 +66,7 @@ module.exports = {
       if(!dataEDB) return;
       const volpicoin = dataEDB.VolpiCoin
 
-      await economyDB.updateOne({ User: interaction.user.id }, {$set: { VolpiCoin: volpicoin + 2000 }});
+      await economyDB.updateOne({ User: interaction.user.id }, {$set: { VolpiCoin: volpicoin + 10000 }});
 
     }
   },

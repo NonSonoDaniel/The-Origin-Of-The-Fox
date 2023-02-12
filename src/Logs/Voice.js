@@ -17,7 +17,6 @@ client.on('voiceStateUpdate', function(oldState, newState) {
             if(oldState.channelId !== newState.channelId) {
                 const voice = new EmbedBuilder()
                 .setAuthor({ name: oldState.member.user.username, iconURL: oldState.member.user.displayAvatarURL({ dynamic: true })})
-                .setTitle("**🔊 VOICE 🔊**")
                 .setColor(Embed.ColoreLog)
                 .setDescription(`<@${oldState.member.id}> si è spostato dal canale <#${oldState.channelId}> al <#${newState.channelId}>`)
                 .setTimestamp()
@@ -28,7 +27,6 @@ client.on('voiceStateUpdate', function(oldState, newState) {
 
             const voice = new EmbedBuilder()
             .setAuthor({ name: oldState.member.user.username, iconURL: oldState.member.user.displayAvatarURL({ dynamic: true })})
-            .setTitle("**🔊 VOICE 🔊**")
             .setColor("Green")
             .setDescription(`<@${newState.member.id}> è entrato nel canale <#${newState.channelId}>`)
             .setTimestamp()
@@ -39,7 +37,6 @@ client.on('voiceStateUpdate', function(oldState, newState) {
 
             const voice = new EmbedBuilder()
             .setAuthor({ name: oldState.member.user.username, iconURL: oldState.member.user.displayAvatarURL({ dynamic: true })})
-            .setTitle("**🔊 VOICE 🔊**")
             .setColor("Red")
             .setDescription(`<@${newState.member.id}> è uscito dal canale <#${oldState.channelId}>`)
             .setTimestamp()

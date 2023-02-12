@@ -1,42 +1,43 @@
 {
 	"Data" : {
-		"clientID" : "1058094559718027264",
-		"guildID" : "1051917810764353647",
-		"token" : "MTA1ODA5NDU1OTcxODAyNzI2NA.GvTx8M.1sPBKjFiFeNIG72Li2dvLNDSAY-B3nOUdHdyvE",
-		"prefix" : "/",
-		"urlmongodb" : "mongodb+srv://Volpistan_BOT:2rOPLOoRyFjnk3sg@volpistan.selyvih.mongodb.net/Data"
+		"clientID" : "1074099843930263552",
+		"guildID" : "1074099502144827422",
+		"token" : "MTA3NDA5OTg0MzkzMDI2MzU1Mg.GkNk6G.ljKF45GPaQ_Av29SUerd0TQUF4RA_dbyw9W7VA",
+		"prefix" : "NaN",
+		"urlmongodb" : "mongodb+srv://BOT:KzRdHTkMgiZYTz6S@theoriginofthefox.vzbx9ad.mongodb.net/Data"
 	},
 
 	"Canali" : {
-		"Errore" : "1058365934823276596",
-		"Welcome" : "1057807703843549204",
-		"Leave" : "1058446994290516031",
+		"Errore" : "1074107574179352576",
+		"Welcome" : "1074312131568214127",
+		"Leave" : "1074312170990469122",
 		"Regolamento" : "1057807561140744253",
-		"Annunci" : "1058093173286645880",
+		"Annunci" : "1074312212199510148",
 		"LastChance" : "1058088615567175711",
-		"Banca" : "1060152603067035678",
+		"Banca" : "1074111969067532358",
+		"Spostami" : "1074307496673558539",
+		"Commands" : "1074312042741256272",
 		"XP" : "1058164311421354054",
 			"Logs" : {
-				"Kick" : "1058396810571436083",
-				"ban" : "1058398857358221462",
-				"Message" : "1058497469908008960",
-				"JoinAndLeave" : "1058710539913658389",
-				"channel" : "1058722459035127908",
-				"voice" : "1058727136946569297",
-				"role" : "1058763547926077520",
-				"member" : "1059103862834868305",
-				"guild" : "1059110961283350569",
-				"MessageCreate" : "1059143365771411596"
+				"Kick" : "1074107506655236136",
+				"ban" : "1074107506655236136",
+				"Message" : "1074107724784226454",
+				"JoinAndLeave" : "1074107601282941008",
+				"channel" : "1074107540083834950",
+				"voice" : "1074107801175076995",
+				"role" : "1074107725954429008",
+				"member" : "1074107699081531442",
+				"guild" : "1074107600209195078",
+				"MessageCreate" : "1074107724784226454"
 		}
 	},
 
 	"Ruoli" : {
-		"BlackZone" : "1057803038405963896",
-		"LastChance" : "1057803041803350076",
-		"Creator" : "1057797412393070682",
-		"Founder" : "1057803033574113300",
+		"BlackZone" : "1074103992507969666",
+		"LastChance" : "1074108370556031006",
+		"Founder" : "1074100874294603787",
 		"XP" : {
-			"Prestigio" : "1058793427346669589",
+			"Prestigio" : "1074110647010349088",
 			"ParlatoreProfessionista" : "1058164674039914556",
 			"ChiaccheronePRO" : "1058164667459063848",
 			"Speaker" : "1058164647745826927",
@@ -44,6 +45,7 @@
 			"Giovanechiaccherone" : "1058164638983929967",
 			"Novellino" : "1058164636672856255"
 		},
+
 		"ReactionRole" : {
 			"Verificato" : "1057792409360146495",
 			"AnimeWorld" : "1058085443117260900",
@@ -87,8 +89,12 @@
 
 	"Webhook" : {
 		"Announce" :  {
-			"ID" : "1059233595711033364",
-			"Token" : "Yt4I3xKe0w86oKd6c_DUX5YNIf_Bow6UlGVnTsV8V3baELTfewIJu4rSNNj99RXm7-AA"
+			"ID" : "1074317551212974092",
+			"Token" : "XqnLhim03blpvCWa4PyRbC6AV49bU3CQelzGEh7PWV2gkOx0oPxpRof-HsO8fWTDyYulA"
 		}
+	},
+	"Redacted" : {
+		"Daniel" : "624674817685192714",
+		"Tommaso" : "743826625489272926"
 	}
 }
