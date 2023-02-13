@@ -7,7 +7,7 @@ const moment = require('moment')
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('euro')
+		.setName('euro-action')
 		.setDescription('Aggiungi, Rimuovi, Visualizza gli euro di un utente.')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 		.setDMPermission(false)
@@ -22,9 +22,9 @@ module.exports = {
         .addUserOption((option) => option.setName('utente')
             .setDescription('Seleziona l\'utente.')
             .setRequired(true))
-        .addNumberOption((option) => option.setName('euro')
+        .addIntegerOption((option) => option.setName('euro')
             .setDescription('La quantità di euro da assegnare.')
-            .setRequired(false)),
+            .setRequired(true)),
 
 	async run(interaction) {
         const utente = interaction.options.getUser('utente');
@@ -44,7 +44,7 @@ module.exports = {
         const portafoglioEmbed = new EmbedBuilder()
         .setTitle(utente.username)
         .setURL(`https://discord.com/users/${utente.id}`)
-        .setDescription(`👤 | Profilo utente: <@!${utente.id}>\n🦊 | Volpicoin: **${portafoglio.VolpiCoin}**\n💸 | Euro: **${portafoglio.Euro}**\n📨 | Euro Inviati: **${portafoglio.EuroInviati}**\n📩 | Euro Ricevuti: **${portafoglio.EuroRicevuti}**`)
+        .setDescription(`👤 | Profilo utente: <@!${utente.id}>\n<:Volpicoin:1074419328599998484> | Volpicoin: **${portafoglio.VolpiCoin}**\n💸 | Euro: **${portafoglio.Euro}**\n📨 | Euro Inviati: **${portafoglio.EuroInviati}**\n📩 | Euro Ricevuti: **${portafoglio.EuroRicevuti}**`)
         .setColor(Embed.ColoreT)
         .setTimestamp()
         
@@ -55,7 +55,7 @@ module.exports = {
 
         if (scelta == 'add') {
 
-            const euro = interaction.options.getNumber('euro');
+            const euro = interaction.options.getInteger('euro');
 
             const embedA = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
@@ -73,7 +73,7 @@ module.exports = {
 
             if (euro > 100000 || euro < 100) return interaction.reply({ embeds: [embedB], ephemeral: true })
 
-            await AccountDB.updateOne({ userID: utente.id }, {$set:{euro: portafoglio.Euro+euro}}), 
+            await AccountDB.updateOne({ User: utente.id }, {$set:{Euro: portafoglio.Euro+euro}}), 
 
             new euroManageDB({
                 Azione: "Aggiunta euro",
@@ -89,7 +89,7 @@ module.exports = {
                 .setTitle('Saldo aggiornato!')
                 .addFields(
                     {
-                        name: `**Ricevente: ${utente.tag}**`, value: `**euro**:  *${portafoglio.Euro}* => *${portafoglio.Euro+euro}*`
+                        name: `**Ricevente: ${utente.tag}**`, value: `**💸 Euro**:  *${portafoglio.Euro}*  ->  *${portafoglio.Euro+euro}*`
                     }
                 )
                 .setColor('Green')
@@ -101,7 +101,7 @@ module.exports = {
         }
         if (scelta == 'rem') {
 
-            const euro = interaction.options.getNumber('euro');
+            const euro = interaction.options.getInteger('euro');
 
             const embedA = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
@@ -119,7 +119,7 @@ module.exports = {
 
             if (portafoglio.Euro-euro < 0) return interaction.reply({ embeds: [embedB], ephemeral: true })
 
-            await AccountDB.updateOne({ userID: utente.id }, {$set:{euro: portafoglio.Euro-euro}}), 
+            await AccountDB.updateOne({ User: utente.id }, {$set:{Euro: portafoglio.Euro-euro}}), 
 
             new euroManageDB({
             Azione: "Rimozione euro",
@@ -134,7 +134,7 @@ module.exports = {
             .setTitle('Saldo aggiornato!')
             .addFields(
                 {
-                    name: `**Ricevente: ${utente.tag}**`, value: `**euro**:  *${portafoglio.Euro}* => *${portafoglio.Euro-euro}*`
+                    name: `**Ricevente: ${utente.tag}**`, value: `**💸 Euro**:  *${portafoglio.Euro}*  ->  *${portafoglio.Euro-euro}*`
                 }
             )
             .setColor('Green')

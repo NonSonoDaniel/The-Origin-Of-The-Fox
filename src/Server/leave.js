@@ -10,7 +10,7 @@ module.exports = (client) => {
     client.on("guildMemberRemove", async (member) => {
         const guild = client.guilds.cache.get(Data.guildID);
         const whCh = guild.channels.cache.get(Canali.Leave);
-        whCh.send({ content: `L'utente <@${member.id}> ha lasciato il server il **${moment.utc().format("DD/MM/YYYY hh:mm:ss")}**`, ephemeral: false });
+        whCh.send({ content: `<@${member.id}> ha lasciato il server! :x:\n Data: **${moment.utc().format("DD/MM/YYYY")}**`, ephemeral: false });
     })
 
     }

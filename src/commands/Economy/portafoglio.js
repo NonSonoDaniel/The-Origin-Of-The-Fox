@@ -57,7 +57,7 @@ module.exports = {
       .setTitle(interaction.user.username)
       .setURL(`https://discord.com/users/${interaction.user.id}`)
       .setDescription(
-        `👤 | Profilo utente: <@!${interaction.user.id}>\n🦊 | VolpiCoin: **${portafoglioDB.VolpiCoin}**\n💸 | Euro: **${portafoglioDB.Euro}**\n📨 | Euro Inviati: **${portafoglioDB.EuroInviati}**\n📩 | Euro Ricevuti: **${portafoglioDB.EuroRicevuti}**`
+        `👤 | Profilo utente: <@!${interaction.user.id}>\n<:Volpicoin:1074419328599998484> | VolpiCoin: **${portafoglioDB.VolpiCoin}**\n💸 | Euro: **${portafoglioDB.Euro}**\n📨 | Euro Inviati: **${portafoglioDB.EuroInviati}**\n📩 | Euro Ricevuti: **${portafoglioDB.EuroRicevuti}**`
       )
       .setColor(Embed.ColoreT)
       .setTimestamp();

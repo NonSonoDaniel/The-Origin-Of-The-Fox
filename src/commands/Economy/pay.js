@@ -48,7 +48,7 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Non effettuare questo comando su te stesso!`
+        `<@${interaction.user.id}> Non puoi effettuare questo comando su te stesso!`
       )
       .setColor("Red")
       .setTimestamp();

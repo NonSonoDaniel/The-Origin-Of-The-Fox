@@ -37,6 +37,7 @@
 		"BlackZone" : "1074103992507969666",
 		"LastChance" : "1074108370556031006",
 		"Founder" : "1074100874294603787",
+		"NewsBorsa" : "1074761629260066866",
 		"XP" : {
 			"Prestigio" : "1074110647010349088",
 			"ParlatoreProfessionista" : "1074110649325592666",
@@ -91,7 +92,7 @@
 	"Webhook" : {
 		"Announce" :  {
 			"ID" : "1074317551212974092",
-			"Token" : "XqnLhim03blpvCWa4PyRbC6AV49bU3CQelzGEh7PWV2gkOx0oPxpRof-HsO8fWTDyYulA"
+			"Token" : "XqnLhim03blpvCWa4PyRbC6AV49bU3CQelzGEh7PWV2gkOx0oPxpRof-HsO8fWTDyYul"
 		}
 	},
 	"Redacted" : {

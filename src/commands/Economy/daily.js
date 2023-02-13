@@ -73,9 +73,9 @@ module.exports = {
 
             const successo = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription(`<@${interaction.user.id}> Hai riscosso il tuo **Daily** di **${Amount}** Euro!`)
+            .setDescription(`<@${interaction.user.id}> Hai riscosso il tuo **Daily** di **${Amount}** Euro 💸!`)
             .setColor('Green')
-            .setFooter({ text: "Il numero di Euro che si possono ottenere è randomico!" })
+            .setFooter({ text: "Il numero di Euro 💸che si possono ottenere è randomico!" })
             .setTimestamp();
 
            return interaction.reply({ embeds: [successo] })
