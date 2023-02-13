@@ -25,6 +25,7 @@ async run(interaction) {
 
     new borsaDB({
         staffID: interaction.user.id,
+        serverID: interaction.guild.id,
         valore: valore
     }).save().then(async () => {
         const successo = new EmbedBuilder()
