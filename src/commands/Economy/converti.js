@@ -111,7 +111,7 @@ module.exports = {
             .setTimestamp();
             if(quantità == 0) return interaction.reply({ embeds: [sel1], ephemeral: true });
 
-            if(quantità > EconomyDB.Euro) return interaction.reply({ embeds: [noVolp1], ephemeral: true });
+            if(BorsaDB.valore > EconomyDB.Euro) return interaction.reply({ embeds: [noVolp1], ephemeral: true });
 
             await Economy.updateOne({ User: interaction.user.id }, {$set:{VolpiCoin: EconomyDB.VolpiCoin + quantità, Euro: EconomyDB.Euro - BorsaDB.valore * quantità}});
 
