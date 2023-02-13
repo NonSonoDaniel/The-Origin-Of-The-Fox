@@ -8,7 +8,7 @@ const { Canali } = require('../../config/config.json')
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('daily')
-    .setDescription('Riscatta una somma di VolpiCoin casuale! (1 volta al giorno!)')
+    .setDescription('Riscatta una somma di euro casuale! (1 volta al giorno!)')
     .setDMPermission(false),
 
     async run(interaction) {
@@ -68,14 +68,14 @@ module.exports = {
 
             const Amount = Math.ceil(Math.random() * 2000)
 
-            DB.VolpiCoin += Amount;
+            DB.Euro += Amount;
             await DB.save()
 
             const successo = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription(`<@${interaction.user.id}> Hai riscosso il tuo **Daily** di **${Amount}** VolpiCoin 🦊!`)
+            .setDescription(`<@${interaction.user.id}> Hai riscosso il tuo **Daily** di **${Amount}** Euro!`)
             .setColor('Green')
-            .setFooter({ text: "Il numero di VolpiCoin che si possono ottenere è randomico!" })
+            .setFooter({ text: "Il numero di Euro che si possono ottenere è randomico!" })
             .setTimestamp();
 
            return interaction.reply({ embeds: [successo] })

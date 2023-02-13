@@ -15,12 +15,12 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Banca}>!`
+        `<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Commands}>!`
       )
       .setColor("Red")
       .setTimestamp();
 
-    if (interaction.channel.id != Canali.Banca)
+    if (interaction.channel.id != Canali.Commands)
       return interaction.reply({ embeds: [noBanca], ephemeral: true });
 
     const dataLDB = await levelDB.findOne({ User: interaction.user.id });
@@ -52,21 +52,27 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Prestigio effettuato!\n Ti sono stati accreditati 10000 VolpiCoin e un ruolo speciale come ricompensa!`
+        `<@${interaction.user.id}> Prestigio effettuato!\n Ti sono stati accreditati 10000 Euro 💸 e un ruolo speciale come ricompensa!`
       )
       .setColor(Embed.ColoreT)
       .setTimestamp();
       const utente = interaction.guild.members.cache.get(interaction.user.id)
       await utente.roles.add(Ruoli.XP.Prestigio)
+      await utente.roles.remove(Ruoli.XP.Novellino)
+      await utente.roles.remove(Ruoli.XP.Chiaccherone)
+      await utente.roles.remove(Ruoli.XP.Giovanechiaccherone)
+      await utente.roles.remove(Ruoli.XP.ChiaccheronePRO)
+      await utente.roles.remove(Ruoli.XP.ParlatoreProfessionista)
+      await utente.roles.remove(Ruoli.XP.Speaker)
       await interaction.editReply({ embeds: [successo], ephemeral: true });
     };
 
     if (dataEDB) {
 
       if(!dataEDB) return;
-      const volpicoin = dataEDB.VolpiCoin
+      const euro = dataEDB.Euro
 
-      await economyDB.updateOne({ User: interaction.user.id }, {$set: { VolpiCoin: volpicoin + 10000 }});
+      await economyDB.updateOne({ User: interaction.user.id }, {$set: { Euro: euro + 10000 }});
 
     }
   },

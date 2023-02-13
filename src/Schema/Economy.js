@@ -3,8 +3,9 @@ const { Schema, model } = require("mongoose");
 const Economy = new Schema({
     User: String,
     VolpiCoin: Number,
-    VolpiCoinRicevuti: Number,
-    VolpiCoinInviati: Number,
+    Euro: Number,
+    EuroRicevuti: Number,
+    EuroInviati: Number,
 }, {
     collection: 'Economy'
 });

@@ -8,7 +8,7 @@ const { Embed, Canali } = require("../../config/config.json");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("xp_classifica")
-    .setDescription("Visualizza la classifica XP di VolpiStan.")
+    .setDescription("Visualizza la classifica XP di The Origin of the Fox.")
     .setDMPermission(false),
   async run(interaction) {
     const { guild } = interaction;
@@ -19,17 +19,17 @@ module.exports = {
       iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
     })
     .setDescription(
-      `<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Banca}>!`
+      `<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Commands}>!`
     )
     .setColor("Red")
     .setTimestamp();
 
-    if (interaction.channel.id != Canali.Banca) return interaction.reply({ embeds: [noBanca], ephemeral: true });
+    if (interaction.channel.id != Canali.Commands) return interaction.reply({ embeds: [noBanca], ephemeral: true });
 
     let text = "";
-
+    
     const Data = await levelDB
-      .find({ ServerID: guild.id })
+    .find({ ServerID: guild.id })
       .sort({
         Prestigio: -1,
         XPT: -1,
@@ -38,10 +38,10 @@ module.exports = {
       })
       .limit(10)
       .catch((err) => {});
-
-    await interaction.deferReply();
-
-    for (let counter = 0; counter < Data.length; ++counter) {
+      
+      await interaction.deferReply();
+      
+      for (let counter = 0; counter < Data.length; ++counter) {
       const { User, Prestigio, XPT, XP, Livello } = Data[counter];
 
       const Member = guild.members.cache.get(User);

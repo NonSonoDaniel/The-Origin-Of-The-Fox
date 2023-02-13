@@ -30,7 +30,7 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Ho creato il tuo portafoglio per il primo utilizzo! Da ora potrai guadagnare i **VolpiCoin** 🦊!`
+        `<@${interaction.user.id}> Ho creato il tuo portafoglio per il primo utilizzo! Da ora potrai guadagnare gli **Euro** 💸!`
       )
       .setColor("Green")
       .setTimestamp();
@@ -40,9 +40,10 @@ module.exports = {
         await interaction.reply({ embeds: [embedF] }),
         new db({
           User: interaction.user.id,
+          Euro: 100,
           VolpiCoin: 0,
-          VolpiCoinInviati: 0,
-          VolpiCoinRicevuti: 0,
+          EuroInviati: 0,
+          EuroRicevuti: 0,
         })
           .save()
           .then(
@@ -56,7 +57,7 @@ module.exports = {
       .setTitle(interaction.user.username)
       .setURL(`https://discord.com/users/${interaction.user.id}`)
       .setDescription(
-        `👤 | Profilo utente: <@!${interaction.user.id}>\n🦊 | VolpiCoin: **${portafoglioDB.VolpiCoin}**\n📨 | VolpiCoin Inviati: **${portafoglioDB.VolpiCoinInviati}**\n📩 | VolpiCoin Ricevuti: **${portafoglioDB.VolpiCoinRicevuti}**`
+        `👤 | Profilo utente: <@!${interaction.user.id}>\n🦊 | VolpiCoin: **${portafoglioDB.VolpiCoin}**\n💸 | Euro: **${portafoglioDB.Euro}**\n📨 | Euro Inviati: **${portafoglioDB.EuroInviati}**\n📩 | Euro Ricevuti: **${portafoglioDB.EuroRicevuti}**`
       )
       .setColor(Embed.ColoreT)
       .setTimestamp();

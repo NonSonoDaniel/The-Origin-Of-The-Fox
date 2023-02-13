@@ -1,14 +1,14 @@
 const { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
 const { Embed } = require('../../config/config.json')
 const AccountDB = require('../../Schema/Economy.js');
-const VolpicoinManageDB = require('../../Schema/VolpiCoinManage.js');
+const euroManageDB = require('../../Schema/VolpiCoinManage.js');
 const moment = require('moment')
 
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('volpicoin')
-		.setDescription('Aggiungi, Rimuovi, Visualizza i VolpiCoin di un utente.')
+		.setName('euro')
+		.setDescription('Aggiungi, Rimuovi, Visualizza gli euro di un utente.')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
 		.setDMPermission(false)
         .addStringOption((option) => option.setName('azione')
@@ -22,8 +22,8 @@ module.exports = {
         .addUserOption((option) => option.setName('utente')
             .setDescription('Seleziona l\'utente.')
             .setRequired(true))
-        .addNumberOption((option) => option.setName('volpicoin')
-            .setDescription('La quantità di Volpicoin da assegnare.')
+        .addNumberOption((option) => option.setName('euro')
+            .setDescription('La quantità di euro da assegnare.')
             .setRequired(false)),
 
 	async run(interaction) {
@@ -44,7 +44,7 @@ module.exports = {
         const portafoglioEmbed = new EmbedBuilder()
         .setTitle(utente.username)
         .setURL(`https://discord.com/users/${utente.id}`)
-        .setDescription(`👤 | Profilo utente: <@!${utente.id}>\n🦊 | VolpiCoin: **${portafoglio.VolpiCoin}**\n📨 | VolpiCoin Inviati: **${portafoglio.VolpiCoinInviati}**\n📩 | VolpiCoin Ricevuti: **${portafoglio.VolpiCoinRicevuti}**`)
+        .setDescription(`👤 | Profilo utente: <@!${utente.id}>\n🦊 | Volpicoin: **${portafoglio.VolpiCoin}**\n💸 | Euro: **${portafoglio.Euro}**\n📨 | Euro Inviati: **${portafoglio.EuroInviati}**\n📩 | Euro Ricevuti: **${portafoglio.EuroRicevuti}**`)
         .setColor(Embed.ColoreT)
         .setTimestamp()
         
@@ -55,31 +55,31 @@ module.exports = {
 
         if (scelta == 'add') {
 
-            const volpicoin = interaction.options.getNumber('volpicoin');
+            const euro = interaction.options.getNumber('euro');
 
             const embedA = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription('Devi selezionare l\'opzione VolpiCoin!')
+            .setDescription('Devi selezionare l\'opzione euro!')
             .setColor('Red')
             .setTimestamp();
 
-            if (!volpicoin) return interaction.reply({ embeds: [embedA], ephemeral: true })
+            if (!euro) return interaction.reply({ embeds: [embedA], ephemeral: true })
 
             const embedB = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription('Non puoi assegnare più di 100.000 VolpiCoin!')
+            .setDescription('Non puoi assegnare più di 100.000 euro 💸!')
             .setColor('Red')
             .setTimestamp();
 
-            if (volpicoin > 100000 || volpicoin < 100) return interaction.reply({ embeds: [embedB], ephemeral: true })
+            if (euro > 100000 || euro < 100) return interaction.reply({ embeds: [embedB], ephemeral: true })
 
-            await AccountDB.updateOne({ userID: utente.id }, {$set:{volpicoin: portafoglio.VolpiCoin+volpicoin}}), 
+            await AccountDB.updateOne({ userID: utente.id }, {$set:{euro: portafoglio.Euro+euro}}), 
 
-            new VolpicoinManageDB({
-                Azione: "Aggiunta VolpiCoin",
+            new euroManageDB({
+                Azione: "Aggiunta euro",
                 User: utente.id,
                 Staff: interaction.user.id,
-                VolpiCoin: volpicoin,
+                euro: euro,
                 Data: moment.utc().format("DD/MM/YYYY hh:mm:ss")
 
             }).save().then(async () => {
@@ -89,7 +89,7 @@ module.exports = {
                 .setTitle('Saldo aggiornato!')
                 .addFields(
                     {
-                        name: `**Ricevente: ${utente.tag}**`, value: `**VolpiCoin**:  *${portafoglio.VolpiCoin}* => *${portafoglio.VolpiCoin+volpicoin}*`
+                        name: `**Ricevente: ${utente.tag}**`, value: `**euro**:  *${portafoglio.Euro}* => *${portafoglio.Euro+euro}*`
                     }
                 )
                 .setColor('Green')
@@ -101,15 +101,15 @@ module.exports = {
         }
         if (scelta == 'rem') {
 
-            const volpicoin = interaction.options.getNumber('volpicoin');
+            const euro = interaction.options.getNumber('euro');
 
             const embedA = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
-            .setDescription('Devi selezionare l\'opzione VolpiCoin!')
+            .setDescription('Devi selezionare l\'opzione euro!')
             .setColor('Red')
             .setTimestamp();
 
-            if (!volpicoin) return interaction.reply({ embeds: [embedA], ephemeral: true })
+            if (!euro) return interaction.reply({ embeds: [embedA], ephemeral: true })
 
             const embedB = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
@@ -117,15 +117,15 @@ module.exports = {
             .setColor('Red')
             .setTimestamp();
 
-            if (portafoglio.VolpiCoin-volpicoin < 0) return interaction.reply({ embeds: [embedB], ephemeral: true })
+            if (portafoglio.Euro-euro < 0) return interaction.reply({ embeds: [embedB], ephemeral: true })
 
-            await AccountDB.updateOne({ userID: utente.id }, {$set:{VolpiCoin: portafoglio.VolpiCoin-volpicoin}}), 
+            await AccountDB.updateOne({ userID: utente.id }, {$set:{euro: portafoglio.Euro-euro}}), 
 
-            new VolpicoinManageDB({
-            Azione: "Rimozione VolpiCoin",
+            new euroManageDB({
+            Azione: "Rimozione euro",
             User: utente.id,
             Staff: interaction.user.id,
-            VolpiCoin: volpicoin,
+            euro: euro,
             Data: moment.utc().format("DD/MM/YYYY hh:mm:ss")
 
         }).save().then(async () => {
@@ -134,7 +134,7 @@ module.exports = {
             .setTitle('Saldo aggiornato!')
             .addFields(
                 {
-                    name: `**Ricevente: ${utente.tag}**`, value: `**VolpiCoin**:  *${portafoglio.VolpiCoin}* => *${portafoglio.VolpiCoin-volpicoin}*`
+                    name: `**Ricevente: ${utente.tag}**`, value: `**euro**:  *${portafoglio.Euro}* => *${portafoglio.Euro-euro}*`
                 }
             )
             .setColor('Green')

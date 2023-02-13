@@ -21,12 +21,12 @@ module.exports = {
       iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
     })
     .setDescription(
-      `<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Banca}>!`
+      `<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Commands}>!`
     )
     .setColor("Red")
     .setTimestamp();
 
-    if (interaction.channel.id != Canali.Banca) return interaction.reply({ embeds: [noBanca], ephemeral: true });
+    if (interaction.channel.id != Canali.Commands) return interaction.reply({ embeds: [noBanca], ephemeral: true });
 
     const member = guild.members.cache.get(user.id);
 
@@ -50,7 +50,7 @@ module.exports = {
     .setAvatar(member.displayAvatarURL({ forceStatic: true }))
     .setBackground(
         "IMAGE",
-        "https://cdn.discordapp.com/attachments/1074301679048069280/1074301707858747412/9529287067_415c1c17b9_b_2.png"
+        "https://cdn.discordapp.com/attachments/787356318100619275/1074383921577463938/sfondo_XP_level.png"
         )
         .setCurrentXP(Data.XP)
         .setRequiredXP(Required)

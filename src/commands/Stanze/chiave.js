@@ -12,27 +12,34 @@ data: new SlashCommandBuilder()
 .setName('chiave')
 .setDescription('Aggiungi il ruolo ad un utente del tuo canale canale privato.')
 .setDMPermission(false)
+.addStringOption(option =>
+    option.setName('azione')
+        .setDescription('Azione da eseguire.')
+        .setRequired(true)
+        .addChoices(
+            { name : 'aggiungi', value : 'add' },
+            { name : 'rimuovi', value : 'rem' },
+        ))
 .addUserOption(option =>
     option.setName('utente')
     .setDescription('Utente a cui aggiungere la chiave.')
     .setRequired(true)),
-
+    
     async run(interaction) {
         try {
-        const user = interaction.options.getMember('utente');
-        const utente = interaction.member.guild.members.cache.get(user.id);
-
-        const VoiceDB = await db.findOne({ userID: interaction.user.id });
-        const noBanca = new EmbedBuilder()
-        .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
-        .setDescription(`<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Commands}>!`)
-        .setColor("Red")
-        .setTimestamp();
-    
-        if(interaction.channel.id != Canali.Commands) return interaction.reply({ embeds: [noBanca], ephemeral: true });
-        if(!VoiceDB) return interaction.reply({ content: "Non hai un canale privato! Di conseguenza non puoi usare questo comando!", ephemeral: true })
-        if(utente.roles.cache.has(VoiceDB.roleID)) return interaction.reply({ content: `<@${user}> ha già il ruolo della tua stanza privata!`, ephemeral: true})
-
+            const user = interaction.options.getMember('utente');
+            const utente = interaction.member.guild.members.cache.get(user.id);
+            const azione = interaction.options.getString("azione")
+            const VoiceDB = await db.findOne({ userID: interaction.user.id });
+            const noBanca = new EmbedBuilder()
+            .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
+            .setDescription(`<@${interaction.user.id}> Questo comando può essere eseguito solo in <#${Canali.Commands}>!`)
+            .setColor("Red")
+            .setTimestamp();
+            
+            if(interaction.channel.id != Canali.Commands) return interaction.reply({ embeds: [noBanca], ephemeral: true });
+            if(!VoiceDB) return interaction.reply({ content: "Non hai un canale privato! Di conseguenza non puoi usare questo comando!", ephemeral: true })
+        
         const attesa = new EmbedBuilder()
         .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
         .setColor(Embed.ColoreDefault)
@@ -78,6 +85,8 @@ data: new SlashCommandBuilder()
         const collector = await inizio.awaitMessageComponent({ filter: filter, time: 60000, componentType: ComponentType.Button });
         const { value } = bottoniC.find(button => button.customId === collector.customId);
 
+        if(azione === "add") {
+
         if(value === 'Si') {
             const successo = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
@@ -98,6 +107,31 @@ data: new SlashCommandBuilder()
 
             await interaction.editReply({ embeds: [successo] })
             collector.update({ components: [bottoniPost] })
+            }
+            } else if (azione === "rem") {
+
+                if(value === 'Si') {
+                    const successo = new EmbedBuilder()
+                    .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
+                    .setColor("Green")
+                    .setDescription(`*La tua chiave (<@&${VoiceDB.roleID}>) è stata rimossa correttamente a ${utente}*`)
+                    .setTimestamp();
+        
+                    await interaction.editReply({ embeds: [successo] })
+                    await utente.roles.remove(VoiceDB.roleID);
+                    collector.update({ components: [bottoniPost] })
+                } else if(value === 'No') {
+        
+                    const successo = new EmbedBuilder()
+                    .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true })})
+                    .setColor("Red")
+                    .setDescription(`*La chiave non è stata rimossa come da te richiesto!*`)
+                    .setTimestamp();
+        
+                    await interaction.editReply({ embeds: [successo] })
+                    collector.update({ components: [bottoniPost] })
+                    }
+
             }
         } catch (error) {
             const timeoutU = new EmbedBuilder()

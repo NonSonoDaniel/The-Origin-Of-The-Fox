@@ -5,7 +5,7 @@ const db = require("../../Schema/Economy.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("pay")
-    .setDescription("Invia una somma di VolpiCoin ad un utente")
+    .setDescription("Invia una somma di Euro ad un utente")
     .setDMPermission(false)
     .addUserOption((option) =>
       option
@@ -15,8 +15,8 @@ module.exports = {
     )
     .addIntegerOption((option) =>
       option
-        .setName("volpicoin")
-        .setDescription("La quantità di VolpiCoin da inviare.")
+        .setName("euro")
+        .setDescription("La quantità di Euro da inviare.")
         .setRequired(true)
     ),
   async run(interaction) {
@@ -36,7 +36,7 @@ module.exports = {
 
     const utente = interaction.options.getUser("utente");
 
-    const VolpiCoin = interaction.options.getInteger("volpicoin");
+    const euro = interaction.options.getInteger("euro");
 
     const ricevente = await db.findOne({ User: utente.id });
 
@@ -93,12 +93,12 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Non puoi spedire meno di **50 VolpiCoin 🦊**!`
+        `<@${interaction.user.id}> Non puoi spedire meno di **50 euro 💸**!`
       )
       .setColor("Red")
       .setTimestamp();
 
-    if (VolpiCoin < 1)
+    if (euro < 1)
 
       return interaction.reply({ embeds: [embedD], ephemeral: true });
     const embedE = new EmbedBuilder()
@@ -107,12 +107,12 @@ module.exports = {
         iconURL: interaction.user.displayAvatarURL({ dynamic: true }),
       })
       .setDescription(
-        `<@${interaction.user.id}> Non hai abbastanza **VolpiCoin 🦊**!`
+        `<@${interaction.user.id}> Non hai abbastanza **Euro 💸**!`
       )
       .setColor("Red")
       .setTimestamp();
 
-    if (VolpiCoin > pagante.VolpiCoin)
+    if (euro > pagante.Euro)
 
       return interaction.reply({ embeds: [embedE], ephemeral: true });
 
@@ -120,8 +120,8 @@ module.exports = {
       { User: utente.id },
       {
         $set: {
-          VolpiCoin: ricevente.VolpiCoin + VolpiCoin,
-          VolpiCoinRicevuti: ricevente.VolpiCoinRicevuti + VolpiCoin,
+          euro: ricevente.Euro + euro,
+          euroRicevuti: ricevente.EuroRicevuti + euro,
         },
       }
     );
@@ -129,27 +129,27 @@ module.exports = {
       { User: interaction.user.id },
       {
         $set: {
-          VolpiCoin: pagante.VolpiCoin - VolpiCoin,
-          VolpiCoinInviati: pagante.VolpiCoinInviati + VolpiCoin,
+          euro: pagante.Euro - euro,
+          euroInviati: pagante.EuroInviati + euro,
         },
       }
     );
     const embed = new EmbedBuilder()
       .setTitle(interaction.user.username)
       .setURL(`https://discord.com/users/${interaction.user.id}`)
-      .setDescription("**Pagamento VolpiCoin 🦊**")
+      .setDescription("**Pagamento euro 💸**")
       .setColor(Embed.ColoreT)
       .addFields(
         {
           name: `**Pagante: ${interaction.user.tag}**`,
-          value: `**VolpiCoin**:  *${pagante.VolpiCoin}* => *${
-            pagante.VolpiCoin - VolpiCoin
+          value: `**euro**:  *${pagante.Euro}* => *${
+            pagante.Euro - euro
           }*`,
         },
         {
           name: `**Ricevente: ${utente.tag}**`,
-          value: `**VolpiCoin**:  *${ricevente.VolpiCoin}* => *${
-            ricevente.VolpiCoin + VolpiCoin
+          value: `**euro**:  *${ricevente.Euro}* => *${
+            ricevente.Euro + euro
           }*`,
         }
       )
