@@ -1,8 +1,6 @@
 const { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js')
 const { Embed } = require('../../config/config.json')
 const AccountDB = require('../../Schema/Economy.js');
-const euroManageDB = require('../../Schema/VolpiCoinManage.js');
-const moment = require('moment')
 
 
 module.exports = {
@@ -73,16 +71,7 @@ module.exports = {
 
             if (euro > 100000 || euro < 100) return interaction.reply({ embeds: [embedB], ephemeral: true })
 
-            await AccountDB.updateOne({ User: utente.id }, {$set:{Euro: portafoglio.Euro+euro}}), 
-
-            new euroManageDB({
-                Azione: "Aggiunta euro",
-                User: utente.id,
-                Staff: interaction.user.id,
-                euro: euro,
-                Data: moment.utc().format("DD/MM/YYYY hh:mm:ss")
-
-            }).save().then(async () => {
+            await AccountDB.updateOne({ User: utente.id }, {$set:{Euro: portafoglio.Euro+euro}})
 
                 const embedC = new EmbedBuilder()
                 .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
@@ -97,7 +86,6 @@ module.exports = {
 
                 await interaction.reply({ embeds : [embedC] });
 
-            })
         }
         if (scelta == 'rem') {
 
@@ -119,16 +107,8 @@ module.exports = {
 
             if (portafoglio.Euro-euro < 0) return interaction.reply({ embeds: [embedB], ephemeral: true })
 
-            await AccountDB.updateOne({ User: utente.id }, {$set:{Euro: portafoglio.Euro-euro}}), 
+            await AccountDB.updateOne({ User: utente.id }, {$set:{Euro: portafoglio.Euro-euro}}) 
 
-            new euroManageDB({
-            Azione: "Rimozione euro",
-            User: utente.id,
-            Staff: interaction.user.id,
-            euro: euro,
-            Data: moment.utc().format("DD/MM/YYYY hh:mm:ss")
-
-        }).save().then(async () => {
             const embedC = new EmbedBuilder()
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
             .setTitle('Saldo aggiornato!')
@@ -142,7 +122,6 @@ module.exports = {
             
             await interaction.reply({ embeds : [embedC] });
 
-            })
         }
     }
 };
