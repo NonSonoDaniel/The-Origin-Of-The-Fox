@@ -6,7 +6,7 @@ const db = require('../../Schema/BlackList.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('blacklist')
-		.setDescription('Aggiunge/rimuove un utenet dalla Black List.')
+		.setDescription('Aggiunge/rimuove un utente dalla Black List.')
 		.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
 		.setDMPermission(false)
         .addStringOption(option =>
