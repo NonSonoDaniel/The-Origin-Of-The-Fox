@@ -121,6 +121,8 @@ const helpP1 = new EmbedBuilder()
 
     collector.on('collect', async i => {
         
+        const utente = i.guild.members.cache.get(i.user.id);
+
         if(i.customId === "page1") {
 
             if(i.user.id !== interaction.user.id) return await i.reply({ content: "Solo chi ha fatto questo comando può utilizzare i bottoni!", ephemeral: true })
@@ -145,7 +147,7 @@ const helpP1 = new EmbedBuilder()
         if(i.customId === "page4") {
 
             if(i.user.id !== interaction.user.id) return await i.reply({ content: "Solo chi ha fatto questo comando può utilizzare i bottoni!", ephemeral: true })
-            if(!i.user.roles.cache.has(Ruoli.Staff)) return await i.reply({ content: "Il bottone della lista comandi della **Moderazione** è riservato allo staff!", ephemeral: true })
+            if(!utente.roles.cache.has(Ruoli.Staff)) return await i.reply({ content: "Il bottone della lista comandi della **Moderazione** è riservato allo staff!", ephemeral: true })
 
             await i.update({ embeds: [helpP4], components: [button] });
         }
@@ -153,7 +155,7 @@ const helpP1 = new EmbedBuilder()
         if(i.customId === "page5") {
 
             if(i.user.id !== interaction.user.id) return await i.reply({ content: "Solo chi ha fatto questo comando può utilizzare i bottoni!", ephemeral: true })
-            if(!i.user.roles.cache.has(Ruoli.Ghiaccio)) return await i.reply({ content: "Il bottone della lista comandi degli **Owner** è riservato a essi!", ephemeral: true })
+            if(!utente.roles.cache.has(Ruoli.Ghiaccio)) return await i.reply({ content: "Il bottone della lista comandi degli **Owner** è riservato a essi!", ephemeral: true })
             
 
             await i.update({ embeds: [helpP5], components: [button] });
