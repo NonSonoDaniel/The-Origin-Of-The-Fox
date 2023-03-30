@@ -1,10 +1,10 @@
 {
 	"Data" : {
-		"clientID" : "1074099843930263552",
-		"guildID" : "1074099502144827422",
-		"token" : "MTA3NDA5OTg0MzkzMDI2MzU1Mg.GkNk6G.ljKF45GPaQ_Av29SUerd0TQUF4RA_dbyw9W7VA",
+		"clientID" : "NaN",
+		"guildID" : "NaN",
+		"token" : "NaN",
 		"prefix" : "NaN",
-		"urlmongodb" : "mongodb+srv://BOT:KzRdHTkMgiZYTz6S@theoriginofthefox.vzbx9ad.mongodb.net/Data"
+		"urlmongodb" : "NaN"
 	},
 
 	"Canali" : {
@@ -97,8 +97,4 @@
 			"Token" : "XqnLhim03blpvCWa4PyRbC6AV49bU3CQelzGEh7PWV2gkOx0oPxpRof-HsO8fWTDyYul"
 		}
 	},
-	"Redacted" : {
-		"Daniel" : "624674817685192714",
-		"Tommaso" : "743826625489272926"
-	}
 }
